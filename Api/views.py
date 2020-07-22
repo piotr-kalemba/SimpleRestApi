@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Book
 from .serializers import BookSerializer
-from django.shortcuts import redirect
 
 
 class HomeView(APIView):
@@ -17,14 +16,14 @@ class HomeView(APIView):
         serializer = BookSerializer(book, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return redirect('home')
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class BookView(APIView):
     def get(self, request, id):
         book = Book.objects.get(id=id)
-        serializer = BookSerializer(book, context={'request': request},)
+        serializer = BookSerializer(book, context={'request': request})
         return Response(serializer.data)
 
     def delete(self, request, id):
