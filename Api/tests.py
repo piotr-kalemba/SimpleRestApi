@@ -29,6 +29,7 @@ class TestHomeView(APITestCase):
 class TestBookView(APITestCase):
 
     def setUp(self):
+        Book.objects.create(title='Mock Title', author='Mock Author', isbn='000-0-00-000000-0')
         book = Book.objects.create(title='The Name of the Rose', author='Umberto Eco', isbn='978-5-16-148410-0')
         book.save()
         self.id = book.id
