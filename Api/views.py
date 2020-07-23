@@ -29,7 +29,7 @@ class BookView(APIView):
     def delete(self, request, id):
         book = Book.objects.get(id=id)
         book.delete()
-        return Response(status=status.HTTP_204_NON_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     def put(self, request, id):
         book = Book.objects.get(id=id)
