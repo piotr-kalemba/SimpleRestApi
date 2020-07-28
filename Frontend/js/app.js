@@ -6,21 +6,31 @@ $(function(){
         method: 'GET',
         url: `${SOURCE}/`
     }).done(function(result){
-        let tbody = $('#tbody');
-        let i = 1;
+        let list = $('#main-list');
         result.forEach(function(book){
-            let tr = $('<tr>');
-            let title = $('<td>').html(`${book.title}`);
-            let author = $('<td>').html(`${book.author}`);
-            let isbn = $('<td>').html(`${book.isbn}`);
-            let num = $('<td>').html(i);
-            tr.append(num);
-            tr.append(title);
-            tr.append(author);
-            tr.append(isbn);
-            tbody.append(tr);
-            i++;
-        })
+            let title = $('<li class="list-group-item">').html(`${book.title}`);
+            title.data('id', `${book.id}`);
+            title.append($('<div class="container">'));
+            list.append(title);
+        });
     });
+    $('#main-list').on('click', 'li',function(event){
+        let li = $(event.target);
+        let id = li.data('id');
+        $.ajax({
+        method: 'GET',
+        url: `${SOURCE}/book/${id}`
+    }).done(function(book){
+        let author = book.author;
+        let isbn = book.isbn;
+        let content = $(`<ul><li>Author: ${author}</li> <li>Isbn: ${isbn}</li></ul>`);
+        let div = li.find('div');
+        if(div.html() === ""){
+            div.append(content);
+        }
+        });
+    });
+
+
 
 })
