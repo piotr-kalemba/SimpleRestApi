@@ -21,9 +21,9 @@ class TestHomeView(APITestCase):
         data = {'title': 'The Trial', 'author': 'Franz Kafka', 'isbn': '978-3-16-148410-0'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(Book.objects.count(), 3)
-        self.assertEqual(response.data['title'], 'The Trial')
-        self.assertEqual(response.data['author'], 'Franz Kafka')
-        self.assertEqual(response.data['isbn'], '978-3-16-148410-0')
+        self.assertEqual(response.data['title'], data['title'])
+        self.assertEqual(response.data['author'], data['author'])
+        self.assertEqual(response.data['isbn'], data['isbn'])
 
 
 class TestBookView(APITestCase):
