@@ -42,13 +42,6 @@ class TestBookView(APITestCase):
         self.assertEqual(response.data['author'], 'Umberto Eco')
         self.assertEqual(response.data['isbn'], '978-5-16-148410-0')
 
-    def test_put(self):
-        url = reverse('book', args=(self.id,))
-        data = {'title': 'The Name of the Rose', 'author': 'Umberto Eco', 'isbn': '978-0-16-148410-0'}
-        response = self.client.put(url, data, format='json')
-        self.assertEqual(response.data['isbn'], '978-0-16-148410-0')
-        self.assertEqual(response.data['author'], 'Umberto Eco')
-
     def test_delete(self):
         count_before = Book.objects.count()
         url = reverse('book', args=(self.id,))
