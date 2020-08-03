@@ -8,14 +8,14 @@ The project comprises of two parts:
 (c) for a 'GET' call ('/book/id'), the server responds with a complete json information of the specified item;
 (d) for a 'DELETE' call ('/book/id'), the server deletes the relevant item from the database.
 
-The 'tests.py' file contains suitable tests ensuring that the views classes for specific endpoints work as desired.
+The 'tests.py' file contains suitable tests ensuring that the views' classes for specific endpoints work as desired.
 The file 'Api/populate_db.py' is a simple python script for populating database with some mock data.
 
 (II) Client - written in HTML and JavaScript, interacting with the Server by the use of AJAX. 
 The Server implements a class Book which has its identifier ISBN, title and author. 
-The client implements only home page. The website presents all books created in the system - the (a) endpoint. 
-The data are read in from the address '/' using AJAX (the (a) endpoint). 
-There is a form for creating new books at the top of the website sending data by AJAX (POST method) - 
+The client implements only home page. The website presents all books created in the system -  
+the data are read in from the address '/' using AJAX (the (a) endpoint). 
+There is a form for creating new books at the right half of the website sending data by AJAX (POST method) - 
 the (b) endpoint. 
 When a user clicks the title of a book, a div with data concerning the book slides down underneath - 
 the (c) endpoint. 
